@@ -23,6 +23,12 @@
 			<h:outputLabel value="Preço"/>
 			<h:inputText id="preco" value="#{adminLivrosBean.livro.preco}"/>
 		</div>
+		<div>
+			<h:outputLabel value="Autores"/>
+			<h:selectManyListbox id="autores">
+				<f:selectItems value="#{adminLivrosBean.autores}" var="autor" itemValue="#{autor.id}" itemLabel="#{autor.nome}"/>
+			</h:selectManyListbox>
+		</div>
 		<h:commandButton id="salvar" value="Cadastrar" action="#{adminLivrosBean.salvar}"/>
 	</h:form>
 </html>
