@@ -1,7 +1,6 @@
 package br.com.livraria.loja.beans;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -30,17 +29,14 @@ public class AdminLivrosBean
 	
 	private List<Integer> autoresId = new ArrayList<Integer>();
 	
-	public void salvar()
+	public String salvar()
 	{
 		for (Integer autorId : autoresId)
 		{
 			livro.getAutores().add(new Autor(autorId));
 		}
 		livroDao.salvar(livro);
-		System.out.println("Livro salvo com sucesso! " + livro);
-		System.out.println("Autores salvos com sucesso! " + autoresId);
-		livro = new Livro();
-		autoresId = new ArrayList<Integer>();
+		return "/livros/lista?faces-redirect=true";
 	}
 	
 	public List<Autor> getAutores()

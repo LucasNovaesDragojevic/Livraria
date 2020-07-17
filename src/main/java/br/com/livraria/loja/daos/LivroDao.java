@@ -1,5 +1,7 @@
 package br.com.livraria.loja.daos;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -15,5 +17,12 @@ public class LivroDao
 	public void salvar(Livro livro)
 	{
 		em.persist(livro);
+	}
+
+	public List<Livro> listar() 
+	{
+		return em
+				.createQuery("SELECT distinct(l) FROM Livro l JOIN FETCH l.autores", Livro.class)
+				.getResultList();
 	}
 }
