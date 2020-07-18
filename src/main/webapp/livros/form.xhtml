@@ -10,27 +10,27 @@
 		<h:messages />
 		<div>
 			<h:outputLabel value="Título"/>
-			<h:inputText id="titulo" value="#{adminLivrosBean.livro.titulo}" required="true" requiredMessage="O título é obrigatório."/>
+			<h:inputText id="titulo" value="#{adminLivrosBean.livro.titulo}" required="true"/>
 		</div>
 		<div>
 			<h:outputLabel value="Descrição"/>
-			<h:inputTextarea id="descricao" value="#{adminLivrosBean.livro.descricao}" rows="4" cols="20" required="true" requiredMessage="A descriação é obrigatória." />
+			<h:inputTextarea id="descricao" value="#{adminLivrosBean.livro.descricao}" rows="4" cols="20" required="true"/>
 		</div>
 		<div>
 			<h:outputLabel value="Número de páginas"/>
-			<h:inputText id="numeroPaginas" value="#{adminLivrosBean.livro.numeroPaginas}" required="true" requiredMessage="O número de páginas é obrigatório.">
+			<h:inputText id="numeroPaginas" value="#{adminLivrosBean.livro.numeroPaginas}" required="true">
 				<f:validateLongRange minimum="80"/>
 			</h:inputText>
 		</div>
 		<div>
 			<h:outputLabel value="Preço"/>
-			<h:inputText id="preco" value="#{adminLivrosBean.livro.preco}" required="true" requiredMessage="O preço do livro é obrigatório">
+			<h:inputText id="preco" value="#{adminLivrosBean.livro.preco}" required="true">
 				<f:validateDoubleRange minimum="20" maximum="150"/>
 			</h:inputText>
 		</div>
 		<div>
 			<h:outputLabel value="Autores"/>
-			<h:selectManyListbox id="autores" value="#{adminLivrosBean.autoresId}">
+			<h:selectManyListbox id="autores" value="#{adminLivrosBean.autoresId}" required="true">
 				<f:selectItems value="#{adminLivrosBean.autores}" var="autor" itemValue="#{autor.id}" itemLabel="#{autor.nome}"/>
 			</h:selectManyListbox>
 		</div>
