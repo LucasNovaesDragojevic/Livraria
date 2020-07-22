@@ -1,6 +1,5 @@
 package br.com.livraria.loja.beans;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -32,14 +31,8 @@ public class AdminLivrosBean
 	@Inject
 	private FacesContext facesContext;
 	
-	private List<Integer> autoresId = new ArrayList<Integer>();
-	
 	public String salvar()
 	{
-		for (Integer autorId : autoresId)
-		{
-			livro.getAutores().add(new Autor(autorId));
-		}
 		livroDao.salvar(livro);
 		facesContext.getExternalContext()
 					.getFlash()

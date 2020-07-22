@@ -1,6 +1,7 @@
 package br.com.livraria.loja.models;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,8 +43,9 @@ public class Livro
 	@Min(50)
 	private Integer numeroPaginas;
 	
+	private LocalDate dataPublicacao;
+	
 	@ManyToMany
-	@Size(min = 1)
-	@NotNull
+	@Size(min = 1) @NotNull
 	private List<Autor> autores = new ArrayList<Autor>();
 }
