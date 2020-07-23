@@ -233,7 +233,7 @@
 	<ul class="vitrineDaColecao-lista">
 		<ui:repeat var="livro" value="#{homeBean.demaisLivros()}">
 			<li class="livroNaVitrine vitrineDaColecao-produto">
-				<a href="#{resquest.contextPath}/livro-detalhe.xhtml?id=#{livro.id}" class="livroNaVitrine-link"  title="#{livro.titulo}">
+				<a href="#{request.contextPath}/livro-detalhe.xhtml?id=#{livro.id}" class="livroNaVitrine-link"  title="#{livro.titulo}">
 					<div class="livroNaVitrine-imagemContainer" role="presentation">
 						<img class="livroNaVitrine-imagem" src="#{request.contextPath}/file/#{livro.capa}" alt="#{livro.titulo}" title="#{livro.titulo}" />
 					</div>
