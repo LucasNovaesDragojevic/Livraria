@@ -33,6 +33,8 @@ public class Livro
 	@NotBlank
 	private String titulo;
 	
+	private String capaLivro;
+	
 	@Lob
 	@Length(min = 10) @NotBlank
 	private String descricao;
