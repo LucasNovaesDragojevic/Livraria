@@ -1,5 +1,6 @@
 package br.com.livraria.loja.beans;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -7,6 +8,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.Part;
 
 import br.com.livraria.loja.daos.AutorDao;
 import br.com.livraria.loja.daos.LivroDao;
@@ -21,6 +23,8 @@ import lombok.Setter;
 public class AdminLivrosBean 
 {	
 	private Livro livro = new Livro();
+	
+	private Part capaLivro;
 
 	@Inject
 	private LivroDao livroDao;
@@ -31,9 +35,10 @@ public class AdminLivrosBean
 	@Inject
 	private FacesContext facesContext;
 	
-	public String salvar()
+	public String salvar() throws IOException
 	{
 		livroDao.salvar(livro);
+		capaLivro.write("C:\\CapaLivros\\" + capaLivro.getSubmittedFileName());
 		facesContext.getExternalContext()
 					.getFlash()
 					.setKeepMessages(true);
