@@ -36,7 +36,14 @@ public class LivroDao
 	public List<Livro> demaisLivros() 
 	{
 		return em.createQuery("SELECT l FROM Livro l ORDER BY l.id DESC", Livro.class)
-					.setFirstResult(6)
+					.setFirstResult(5)
 					.getResultList();
+	}
+
+	public Livro buscarPorId(Integer id) 
+	{
+		return em.createQuery("SELECT l FROM Livro l JOIN FETCH l.autores WHERE l.id = :pId", Livro.class)
+					.setParameter("pId", id)	
+					.getSingleResult();
 	}
 }
