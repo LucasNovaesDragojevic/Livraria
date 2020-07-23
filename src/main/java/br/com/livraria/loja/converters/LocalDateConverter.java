@@ -14,7 +14,7 @@ import javax.faces.convert.DateTimeConverter;
 import javax.faces.convert.FacesConverter;
 
 @FacesConverter(forClass = LocalDate.class)
-public class LocalDateConverter implements Converter
+public class LocalDateConverter implements Converter<Object>
 {
 
     private DateTimeConverter converter = new DateTimeConverter();

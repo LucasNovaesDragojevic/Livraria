@@ -8,7 +8,7 @@ import javax.faces.convert.FacesConverter;
 import br.com.livraria.loja.models.Autor;
 
 @FacesConverter("autorConverter")
-public class AutorConverter implements Converter
+public class AutorConverter implements Converter<Object>
 {
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) 
