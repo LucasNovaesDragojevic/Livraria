@@ -14,6 +14,7 @@ import br.com.livraria.loja.daos.LivroDao;
 import br.com.livraria.loja.infra.FileSaver;
 import br.com.livraria.loja.models.Autor;
 import br.com.livraria.loja.models.Livro;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -38,7 +39,7 @@ public class AdminLivrosBean
 	public String salvar()
 	{
 		FileSaver fileSaver = new FileSaver();
-		livro.setCapaLivro(fileSaver.write(capaLivro, "livros"));		
+		livro.setCapa(fileSaver.write(capaLivro, "livros"));		
 		livroDao.salvar(livro);
 		facesContext.getExternalContext()
 					.getFlash()
