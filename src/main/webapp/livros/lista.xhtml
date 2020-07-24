@@ -6,34 +6,47 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 	
-	<h:messages/>
-
-	<h:dataTable var="livro" value="#{adminListaLivrosBean.livros}">
-		<h:column>
-			<f:facet name="header">Título</f:facet>
-			#{livro.titulo}
-		</h:column>
-		<h:column>
-			<f:facet name="header">Descrição</f:facet>
-			#{livro.descricao}
-		</h:column>
-		<h:column>
-			<f:facet name="header">Número de Páginas</f:facet>
-			#{livro.numeroPaginas}
-		</h:column>
-		<h:column>
-			<f:facet name="header">Preço</f:facet>
-			#{livro.preco}
-		</h:column>
-		<h:column>
-			<f:facet name="header">Autores</f:facet>
-			<ui:repeat var="autor" value="#{livro.autores}">
-				#{autor.nome} 
-			</ui:repeat>
-		</h:column>
-		<h:column>
-			<f:facet name="header">Capa</f:facet>
-			<img src="#{request.contextPath}/file/#{livro.capa}" height="10%" width="10%" alt="#{livro.titulo}" />
-		</h:column>
-	</h:dataTable>
+<h:head>	
+	<h:outputScript library="js" name="jquery-3.5.1.slim.min.js"/>
+	<h:outputStylesheet library="css" name="bootstrap.min.css"/>
+	<h:outputScript library="js" name="bootstrap.bundle.min.js"/>
+</h:head>
+<h:body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">Livraria</a>
+		<a class="nav-item nav-link" href="#{request.contextPath}/livros/lista.xhtml">Lista</a>
+		<a class="nav-item nav-link" href="#{request.contextPath}/livros/form.xhtml">Adicionar</a>
+	</nav>
+	<div class="container">
+		<h:messages styleClass="alert alert-primary"/>
+		<h:dataTable styleClass="table" var="livro" value="#{adminListaLivrosBean.livros}" headerClass="tabela">
+			<h:column>
+				<f:facet name="header">Título</f:facet>
+				#{livro.titulo}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Descrição</f:facet>
+				#{livro.descricao}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Número de Páginas</f:facet>
+				#{livro.numeroPaginas}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Preço</f:facet>
+				#{livro.preco}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Autores</f:facet>
+				<ui:repeat var="autor" value="#{livro.autores}">
+					#{autor.nome} 
+				</ui:repeat>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Capa</f:facet>
+				<img class="img-fluid" width="100px" src="#{request.contextPath}/file/#{livro.capa}" alt="#{livro.titulo}" />
+			</h:column>
+		</h:dataTable>
+	</div>
+</h:body>	
 </html>
