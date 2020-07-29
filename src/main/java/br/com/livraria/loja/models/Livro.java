@@ -19,14 +19,16 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Length;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Getter @Setter @ToString
+@Getter @Setter @ToString @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Livro 
 {
+	@EqualsAndHashCode.Include
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
