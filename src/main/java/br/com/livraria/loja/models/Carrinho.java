@@ -61,11 +61,10 @@ public class Carrinho implements Serializable
 		return itens.stream().mapToInt(item -> item.getQuantidade()).sum();
 	}
 	
-	public void finalizar(Usuario usuario)
+	public void finalizar(Compra compra)
 	{
-		Compra compra = new Compra();
-		compra.setUsuario(usuario);
 		compra.setItens(toJson());
+		compra.setTotal(getTotal());
 		compraDao.salvar(compra);
 	}
 
