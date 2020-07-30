@@ -6,6 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
+import org.hibernate.jpa.QueryHints;
+
 import br.com.livraria.loja.models.Livro;
 
 @Transactional
@@ -30,6 +32,7 @@ public class LivroDao
 	{
 		return em.createQuery("SELECT l FROM Livro l ORDER BY l.id DESC", Livro.class)
 					.setMaxResults(5)
+					.setHint(QueryHints.HINT_CACHEABLE, true)
 					.getResultList();
 	}
 
@@ -37,6 +40,7 @@ public class LivroDao
 	{
 		return em.createQuery("SELECT l FROM Livro l ORDER BY l.id DESC", Livro.class)
 					.setFirstResult(5)
+					.setHint(QueryHints.HINT_CACHEABLE, true)
 					.getResultList();
 	}
 
