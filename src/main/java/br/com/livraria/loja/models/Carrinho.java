@@ -42,4 +42,14 @@ public class Carrinho implements Serializable
 	{
 		return item.getLivro().getPreco().multiply(new BigDecimal(item.getQuantidade()));
 	}
+	
+	public void remover(CarrinhoItem item)
+	{
+		itens.remove(item);
+	}
+	
+	public Integer getQuantidadeTotal()
+	{
+		return itens.stream().mapToInt(item -> item.getQuantidade()).sum();
+	}
 }
