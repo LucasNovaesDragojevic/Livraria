@@ -30,9 +30,8 @@ public class LivroDao
 
 	public List<Livro> ultimosLancamentos() 
 	{
-		return em.createQuery("SELECT l FROM Livro l ORDER BY l.id DESC", Livro.class)
+		return em.createQuery("SELECT l FROM Livro l JOIN FETCH l.autores ORDER BY l.id DESC", Livro.class)
 					.setMaxResults(5)
-					.setHint(QueryHints.HINT_CACHEABLE, true)
 					.getResultList();
 	}
 
