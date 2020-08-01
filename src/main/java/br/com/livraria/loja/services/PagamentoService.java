@@ -4,7 +4,11 @@ import java.net.URI;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.jms.Destination;
+import javax.jms.JMSContext;
+import javax.jms.JMSProducer;
 import javax.servlet.ServletContext;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -31,6 +35,12 @@ public class PagamentoService
 	@Inject
 	private PagamentoGateway pagamentoGateway;
 	
+	@Inject
+	private JMSContext jmsContext;
+	
+	@Resource(name = "java:/jms/topics/CarrinhoComprasTopico")
+	private Destination destination;
+	
 	private static ExecutorService executor = Executors.newFixedThreadPool(50);
 	
 	@POST
@@ -38,18 +48,19 @@ public class PagamentoService
 	{
 		Compra compra = compraDao.getByUuid(uuid);
         String contextPath = servletContext.getContextPath();
+        JMSProducer jmsProducer = jmsContext.createProducer();
 		try
 		{
 			executor.submit(() -> 
 			{
 				String resposta = pagamentoGateway.pagar(compra.getTotal());
 				System.out.println(resposta);
+				jmsProducer.send(destination, compra.getUuid());
 				URI uri = UriBuilder
 							.fromPath("http://localhost:8080" + contextPath + "/index.xhtml")
 							.queryParam("msg", "Compra-realizada-com-sucesso")
 							.build();
 				Response response = Response.seeOther(uri).build();
-				System.out.println("Pagamento finalizado");
 				ar.resume(response);
 			});
 		}
