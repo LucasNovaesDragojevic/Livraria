@@ -31,6 +31,12 @@ public class CurrentUser
 		return request.isUserInRole(role);
 	}
 	
+	public String logout()
+	{
+		request.getSession().invalidate();
+		return "/livros/lista?faces-redirect=true";
+	}
+	
 	@PostConstruct
 	public void loadUser()
 	{
