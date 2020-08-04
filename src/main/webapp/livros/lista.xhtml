@@ -18,6 +18,8 @@
 		<a class="nav-item nav-link" href="#{request.contextPath}/livros/form.xhtml">Adicionar</a>
 	</nav>
 	<div class="container">
+		<h1>Lista de livros</h1>
+		<p>Bem vindo #{currentUser.get().email}</p>
 		<h:messages styleClass="alert alert-primary"/>
 		<h:dataTable styleClass="table" var="livro" value="#{adminListaLivrosBean.livros}" headerClass="tabela">
 			<h:column>
