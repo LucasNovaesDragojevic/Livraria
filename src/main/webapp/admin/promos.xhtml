@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="../templates/_admin.xhtml">
+<ui:param name="promos" value="active"/>
+<ui:define name="content">
+	<div class="container my-3">
+		<h:form enctype="multipart/form-data">
+			<div class="form-group">
+				<h:outputLabel value="Título"/>
+				<h:inputText id="titulo" styleClass="form-control" value="#{adminPromosBean.promo.titulo}" required="true"/>
+				<h:message styleClass="text-danger" for="titulo"/>
+			</div>
+			<div class="form-group">
+				<h:outputLabel value="Livros"/>
+				<h:selectOneMenu styleClass="form-control" id="livros" value="#{adminPromosBean.promo.livro.id}" required="true">
+					<f:selectItems  var="livro" value="#{adminListaLivrosBean.livros}" itemValue="#{livro.id}" itemLabel="#{livro.titulo}"/>
+				</h:selectOneMenu>
+				<h:message styleClass="text-danger" for="livros"/>
+			</div>
+			<h:commandButton styleClass="btn btn-primary" id="salvar" value="Cadastrar" action="#{adminPromosBean.enviar}"/>
+		</h:form>
+	</div>
+</ui:define>
+</ui:composition>
+</html>

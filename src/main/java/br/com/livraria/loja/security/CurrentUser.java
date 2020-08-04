@@ -34,7 +34,7 @@ public class CurrentUser
 	public String logout()
 	{
 		request.getSession().invalidate();
-		return "/livros/lista?faces-redirect=true";
+		return "/admin/lista?faces-redirect=true";
 	}
 	
 	@PostConstruct

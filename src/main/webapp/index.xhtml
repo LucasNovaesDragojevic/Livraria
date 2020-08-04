@@ -418,6 +418,19 @@
 
 </body>
 
+<script>
+	let canalPromos = new WebSocket("ws://localhost:8080/#{request.contextPath}/canal/promos")
+	canalPromos.onmessage = function(message)
+	{
+		console.log(message)
+		let novaPromo = JSON.parse(message.data)
+		if (confirm("Que tal aproveitar a promoção relâmpago " + novaPromo.titulo))
+		{
+			document.location.href="#{request.contextPath}/livro-detalhe.xhtml?id=" + novaPromo.livroId
+		}
+	}
+</script>
+
 <object id="4ad8da2a-fac9-9189-9a29-489b18bb8aa9" width="0" height="0" type="application/gas-events-uni"></object>
 
 </html>
